@@ -2,9 +2,7 @@ package com.valentino.util;
 
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.DEFINED_PORT;
 
-import com.valentino.example.config.CassandraConfig;
 import com.valentino.example.repo.MyEntityRepository;
-import com.valentino.example.service.SomeStorageService;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.cassandra.CassandraAutoConfiguration;
@@ -15,17 +13,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-@EnableAutoConfiguration(exclude = {
-    SecurityAutoConfiguration.class,
-    CassandraDataAutoConfiguration.class,
-    CassandraAutoConfiguration.class
-})
+@EnableAutoConfiguration(
+    exclude = {
+      SecurityAutoConfiguration.class,
+      CassandraDataAutoConfiguration.class,
+      CassandraAutoConfiguration.class
+    })
 @ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = DEFINED_PORT)
 @AutoConfigureMockMvc(addFilters = false)
 public abstract class BaseIntegrationTest {
 
-  @MockBean
-  public MyEntityRepository myEntityRepository;
-
+  @MockBean public MyEntityRepository myEntityRepository;
 }
